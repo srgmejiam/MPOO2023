@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hola Alumnos de MPOO");
+﻿static void main()
+{
+
+}
+
+
+
