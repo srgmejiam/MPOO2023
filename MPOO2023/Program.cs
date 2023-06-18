@@ -1,4 +1,14 @@
-﻿static int main()
+﻿using BLL;
+
+static void main()
 {
-    return 0;
+	foreach (var item in BLL_Roles.Listar(false))
+	{
+		Console.WriteLine(item.IdRol+ " " + item.Rol);
+	}
+
+
+
 }
+
+main();
