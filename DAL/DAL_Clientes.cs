@@ -1,64 +1,64 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using EL;
+﻿using EL;
 
 namespace DAL
 {
-    public static class DAL_Formularios
+    public static class DAL_Clientes
     {
-        public static Formularios Insert(Formularios Entidad)
+        public static Clientes Insert(Clientes Entidad)
         {
             using (BDMPOO bd = new BDMPOO())
             {
                 Entidad.Activo = true;
                 Entidad.FechaRegistro = DateTime.Now;
-                bd.Formularios.Add(Entidad);
+                bd.Clientes.Add(Entidad);
                 bd.SaveChanges();
                 return Entidad;
             }
         }
-        public static bool Update(Formularios Entidad)
+        public static bool Update(Clientes Entidad)
         {
             using (BDMPOO bd = new BDMPOO())
             {
-                var Registro = bd.Formularios.Find(Entidad.IdFormulario);
-                Registro.Formulario = Entidad.Formulario;
+                var Registro = bd.Clientes.Find(Entidad.IdCliente);
+
+                Registro.NombreCliente = Entidad.NombreCliente;
+                Registro.Numero = Entidad.Numero;
+                Registro.Correo = Entidad.Correo;
                 Registro.IdUsuarioActualiza = Entidad.IdUsuarioActualiza;
                 Registro.FechaActualizacion = Entidad.FechaActualizacion;
                 return bd.SaveChanges() > 0;
             }
         }
-        public static bool Anular(Formularios Entidad)
+        public static bool Anular(Clientes Entidad)
         {
             using (BDMPOO bd = new BDMPOO())
             {
-                var Registro = bd.Formularios.Find(Entidad.IdFormulario);
+                var Registro = bd.Clientes.Find(Entidad.IdCliente);
                 Registro.Activo = Entidad.Activo;
                 Registro.IdUsuarioActualiza = Entidad.IdUsuarioActualiza;
                 Registro.FechaActualizacion = Entidad.FechaActualizacion;
                 return bd.SaveChanges() > 0;
             }
         }
-        public static bool Existe(Formularios Entidad)
+        public static bool Existe(Clientes Entidad)
         {
             using (BDMPOO bd = new BDMPOO())
             {
-                return bd.Formularios.Where(a => a.IdFormulario == Entidad.IdFormulario).Count() > 0;
+                return bd.Clientes.Where(a => a.IdCliente == Entidad.IdCliente).Count() > 0;
             }
         }
-        public static Formularios Registro(Formularios Entidad)
+        public static Clientes Registro(Clientes Entidad)
         {
             using (BDMPOO bd = new BDMPOO())
             {
-                return bd.Formularios.Where(a => a.IdFormulario == Entidad.IdFormulario).SingleOrDefault();
+                return bd.Clientes.Where(a => a.IdCliente == Entidad.IdCliente).SingleOrDefault();
             }
         }
-        public static List<Formularios> Lista(bool Activo = true)
+        public static List<Clientes> Lista(bool Activo = true)
         {
             using (BDMPOO bd = new BDMPOO())
             {
-                return bd.Formularios.Where(a => a.Activo == Activo).ToList();
+                return bd.Clientes.Where(a => a.Activo == Activo).ToList();
             }
         }
     }

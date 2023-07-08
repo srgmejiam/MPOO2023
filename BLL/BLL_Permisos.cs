@@ -17,19 +17,8 @@ namespace BL
 		}
 		 public static bool Anular (Permisos Entidad)
 		{
-			 return DAL_Permisos.Anular(Entidad);
+			 return DAL_Permisos.Delete(Entidad);
 		}
-		 public static bool Existe (Permisos Entidad)
-		{
-			 return DAL_Permisos.Existe(Entidad);
-		}
-		 public static Permisos Registro (Permisos Entidad)
-		{
-			 return DAL_Permisos.Registro(Entidad);
-		}
-		 public static List<Permisos> Lista (bool Activo = true)
-		{
-			 return DAL_Permisos.Lista(Activo);
-		}
+		
 	}
 }
