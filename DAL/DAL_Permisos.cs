@@ -5,61 +5,59 @@ using EL;
 
 namespace DAL
 {
-	 public static class DAL_Permisos
-	{
-		 public static Permisos Insert (Permisos Entidad)
-		{
-			 using (BDMPOO bd = new BDMPOO ())
-			{
-				 Entidad.Activo = true;
-				 Entidad.FechaRegistro = DateTime.Now;
-				 bd.Permisos.Add(Entidad);
-				 bd.SaveChanges();
-				 return Entidad;
-			}
-		}
-		 public static bool Update (Permisos Entidad)
-		{
-			 using (BDMPOO bd = new BDMPOO ())
-			{
-				 var Registro = bd.Permisos.Find(Entidad.IdPermiso);
-				 Registro.Permiso = Entidad.Permiso;
-				 Registro.IdUsuarioActualiza = Entidad.IdUsuarioActualiza;
-				 Registro.FechaActualizacion = Entidad.FechaActualizacion;
-				 return bd.SaveChanges() > 0;
-			}
-		}
-		 public static bool Anular (Permisos Entidad)
-		{
-			 using (BDMPOO bd = new BDMPOO ())
-			{
-				 var Registro = bd.Permisos.Find(Entidad.IdPermiso);
-				 Registro.Activo = Entidad.Activo;
-				 Registro.IdUsuarioActualiza = Entidad.IdUsuarioActualiza;
-				 Registro.FechaActualizacion = Entidad.FechaActualizacion;
-				 return bd.SaveChanges() > 0;
-			}
-		}
-		 public static bool Existe (Permisos Entidad)
-		{
-			 using (BDMPOO bd = new BDMPOO ())
-			{
-				 return bd.Permisos.Where(a=>a.IdPermiso == Entidad.IdPermiso).Count() > 0;
-			}
-		}
-		 public static Permisos Registro (Permisos Entidad)
-		{
-			 using (BDMPOO bd = new BDMPOO ())
-			{
-				 return bd.Permisos.Where(a=>a.IdPermiso == Entidad.IdPermiso).SingleOrDefault();
-			}
-		}
-		 public static List<Permisos> Lista (bool Activo = true)
-		{
-			 using (BDMPOO bd = new BDMPOO ())
-			{
-				 return bd.Permisos.Where(a=>a.Activo == Activo).ToList();
-			}
-		}
-	}
+    public static class DAL_Permisos
+    {
+        //Insertar
+        public static Permisos Insert(Permisos Entidad)
+        {
+            using BDMPOO bd = new();
+            Entidad.Activo = true;
+            Entidad.FechaRegistro = DateTime.Now;
+            bd.Permisos.Add(Entidad);
+            bd.SaveChanges();
+            return Entidad;
+        }
+
+        //Actualizar
+        public static bool Update(Permisos Entidad)
+        {
+            using BDMPOO bd = new();
+            var Registro = bd.Permisos.Find(Entidad.IdPermiso);
+            if (Registro == null)
+            {
+                return false;
+            }
+            Registro.Permiso = Entidad.Permiso;
+            Registro.FechaActualizacion = DateTime.Now;
+            return bd.SaveChanges() > 0;
+        }
+
+        //Anular
+        public static bool Delete(Permisos Entidad)
+        {
+            using BDMPOO bd = new();
+            var Registro = bd.Permisos.Find(Entidad.IdPermiso);
+            if (Registro == null)
+            {
+                return false;
+            }
+            Registro.Activo = false;
+            Registro.FechaActualizacion = DateTime.Now;
+            return bd.SaveChanges() > 0;
+        }
+
+        //Seleccionar un Registro
+        public static Permisos Registro(short IdRegistro)
+        {
+            using BDMPOO bd = new();
+            return bd.Permisos.Find(IdRegistro);
+        }
+
+        //Listar todos los registros
+        public static List<Permisos> Listar(bool Activo = true)
+        {
+            using BDMPOO bd = new();
+            return bd.Permisos.Where(a => a.Activo == Activo && a.FechaRegistro > DateTime.Now).ToList();
+        }
+    }
 }

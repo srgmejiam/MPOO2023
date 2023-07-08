@@ -30,5 +30,6 @@ namespace BLL
         {
             return DAL_Roles.Listar(Activo);
         }
+
     }
 }

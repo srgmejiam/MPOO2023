@@ -59,7 +59,7 @@ namespace DAL
         public static List<Roles> Listar(bool Activo = true)
         {
             using BDMPOO bd = new();
-            return bd.Roles.Where(a=>a.Activo==Activo).ToList();
+            return bd.Roles.Where(a=>a.Activo==Activo && a.FechaRegistro> DateTime.Now).ToList();
         }
     }
 }

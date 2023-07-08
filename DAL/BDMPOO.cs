@@ -13,5 +13,6 @@ namespace DAL
         public virtual DbSet<RolFormularios>? RolFormularios { get; set; }
         public virtual DbSet<RolPermisos>? RolPermisos { get; set; }
         public virtual DbSet<Usuarios>? Usuarios { get; set; }
+
     }
 }
