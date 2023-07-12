@@ -98,6 +98,7 @@
             this.btnNuevo.TabIndex = 6;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnGuardar
             // 
@@ -107,6 +108,7 @@
             this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnAnular
             // 
@@ -119,13 +121,21 @@
             // 
             // gridClientes
             // 
+            this.gridClientes.AllowUserToAddRows = false;
+            this.gridClientes.AllowUserToDeleteRows = false;
+            this.gridClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridClientes.Location = new System.Drawing.Point(21, 342);
+            this.gridClientes.MultiSelect = false;
             this.gridClientes.Name = "gridClientes";
+            this.gridClientes.ReadOnly = true;
+            this.gridClientes.RowHeadersVisible = false;
             this.gridClientes.RowHeadersWidth = 51;
             this.gridClientes.RowTemplate.Height = 29;
+            this.gridClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridClientes.Size = new System.Drawing.Size(517, 303);
             this.gridClientes.TabIndex = 9;
+            this.gridClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClientes_CellClick);
             // 
             // label3
             // 
