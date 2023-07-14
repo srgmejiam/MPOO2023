@@ -167,16 +167,6 @@ namespace UI
             txtNumero.Text = string.Empty;
             txtCorreo.Text = string.Empty;
         }
-        public static bool ValidateEmail(string? email)
-        {
-            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-
-            if (email != null && !string.IsNullOrEmpty(email) && !string.IsNullOrWhiteSpace(email))
-            {
-                return Regex.Match(email, pattern).Success;
-            }
-            return false;
-        }
         #endregion
 
         #region Eventos de los controles
