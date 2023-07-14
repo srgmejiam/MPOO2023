@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using EL;
 using BLL;
 using BL;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.Net;
 
 namespace UI
 {
@@ -25,6 +28,7 @@ namespace UI
         private void AdministracionClientes_Load(object sender, EventArgs e)
         {
             cargarGrid();
+
         }
 
         #region Metodos y funciones
@@ -142,7 +146,43 @@ namespace UI
             txtNumero.Text = string.Empty;
             txtCorreo.Text = string.Empty;
         }
+        public static bool ValidateEmail(string? email)
+        {
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
 
+            if (email != null && !string.IsNullOrEmpty(email) && !string.IsNullOrWhiteSpace(email))
+            {
+                return Regex.Match(email, pattern).Success;
+            }
+            return false;
+        }
+        public static bool EnviarCorreo(string from, string to, string subject, string body)
+        {
+            if (string.IsNullOrEmpty(from) || string.IsNullOrWhiteSpace(from) || string.IsNullOrEmpty(to) || string.IsNullOrWhiteSpace(to))
+            {
+                return false;
+            }
+
+            string smtpServer = "smtp-relay.brevo.com";
+            int smtpPort = 587;
+            string smtpUsername = "srg.dex@gmail.com";
+            string smtpPassword = "xsmtpsib-92f6fff586ee9bf8dcc4801ca3ddad7405ab59c7f2eafc91c1ea8d4548e3c39f-fMLJtz7bGvUBdQqI";
+
+            try
+            {
+                MailMessage mail = new MailMessage(from, to, subject, body);
+                SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort);
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
+                smtpClient.EnableSsl = true;
+                smtpClient.Send(mail);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region Eventos de los controles
@@ -150,7 +190,6 @@ namespace UI
         {
             LimpiarCampos();
         }
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Guardar();
