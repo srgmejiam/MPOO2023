@@ -34,9 +34,9 @@ namespace DAL
             using (BDMPOO bd = new BDMPOO())
             {
                 var Registro = bd.Clientes.Find(Entidad.IdCliente);
-                Registro.Activo = Entidad.Activo;
+                Registro.Activo = false;
                 Registro.IdUsuarioActualiza = Entidad.IdUsuarioActualiza;
-                Registro.FechaActualizacion = Entidad.FechaActualizacion;
+                Registro.FechaActualizacion = DateTime.Now;
                 return bd.SaveChanges() > 0;
             }
         }

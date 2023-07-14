@@ -118,6 +118,7 @@
             this.btnAnular.TabIndex = 8;
             this.btnAnular.Text = "Anular";
             this.btnAnular.UseVisualStyleBackColor = true;
+            this.btnAnular.Click += new System.EventHandler(this.btnAnular_Click);
             // 
             // gridClientes
             // 

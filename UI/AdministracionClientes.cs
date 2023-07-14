@@ -125,6 +125,27 @@ namespace UI
                 return;
             }
         }
+        private void Anular()
+        {
+            try
+            {
+                Clientes entidad = new();
+                entidad.IdCliente = IdRegistro;
+                entidad.IdUsuarioActualiza = IdUsuarioSesion;
+                if (BLL_Clientes.Anular(entidad))
+                {
+                    MessageBox.Show("Registro anulado con exito");
+                    cargarGrid();
+                    return;
+                }
+                MessageBox.Show("El Registro no fue anulado con exito");
+                return;
+            }
+            catch (Exception Error)
+            {
+                MessageBox.Show(Error.Message);
+            }
+        }
         private void cargarCampos()
         {
             try
@@ -188,7 +209,7 @@ namespace UI
         #region Eventos de los controles
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            cargarGrid();
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -197,6 +218,10 @@ namespace UI
         private void gridClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             cargarCampos();
+        }
+        private void btnAnular_Click(object sender, EventArgs e)
+        {
+            Anular();
         }
         #endregion
 
