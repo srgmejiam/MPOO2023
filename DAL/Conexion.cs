@@ -4,7 +4,7 @@ namespace DAL
     public static class Conexion
     {
         private static string NombreAplicacion = "GeneradorCapas";
-        private static string Servidor = @"SRG\SQL2019";
+        private static string Servidor = @"ANUBYS\SQL2019";
         private static string Usuario = "";
         private static string Password = "";
         private static string BaseDatos = "MPOO";

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{0CD0529B-09DF-4EBB-B442-E7593D083852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{B69FF2BB-43DF-484D-B094-F44DBC68B551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{B69FF2BB-43DF-484D-B094-F44DBC68B551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{8AB21FC8-E6AF-46F8-B6DF-6EF657DB2D3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B69FF2BB-43DF-484D-B094-F44DBC68B551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B69FF2BB-43DF-484D-B094-F44DBC68B551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B69FF2BB-43DF-484D-B094-F44DBC68B551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB21FC8-E6AF-46F8-B6DF-6EF657DB2D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB21FC8-E6AF-46F8-B6DF-6EF657DB2D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB21FC8-E6AF-46F8-B6DF-6EF657DB2D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB21FC8-E6AF-46F8-B6DF-6EF657DB2D3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

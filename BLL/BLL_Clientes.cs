@@ -34,5 +34,14 @@ namespace BLL
         {
             return DAL_Clientes.Lista(Activo);
         }
+        public static bool ExisteNumero(string Numero, int IdRegistro)
+        {
+            return DAL_Clientes.ExisteNumero(Numero, IdRegistro);
+        }
+        public static bool ExisteCorreo(string Email, int IdRegistro)
+        {
+            return DAL_Clientes.ExisteCorreo(Email, IdRegistro);
+        }
+
     }
 }

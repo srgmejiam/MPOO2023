@@ -54,6 +54,7 @@
             // txtNombreCliente
             // 
             this.txtNombreCliente.Location = new System.Drawing.Point(19, 54);
+            this.txtNombreCliente.MaxLength = 200;
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(519, 27);
             this.txtNombreCliente.TabIndex = 1;
@@ -61,9 +62,11 @@
             // txtNumero
             // 
             this.txtNumero.Location = new System.Drawing.Point(19, 124);
+            this.txtNumero.MaxLength = 8;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(519, 27);
             this.txtNumero.TabIndex = 3;
+            this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
             // label1
             // 
@@ -77,6 +80,7 @@
             // txtCorreo
             // 
             this.txtCorreo.Location = new System.Drawing.Point(19, 201);
+            this.txtCorreo.MaxLength = 200;
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(519, 27);
             this.txtCorreo.TabIndex = 5;

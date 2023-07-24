@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EL;
+﻿using EL;
 using BLL;
-using BL;
-using System.Text.RegularExpressions;
-using System.Net.Mail;
-using System.Net;
+using Utility;
 
 namespace UI
 {
@@ -60,23 +48,26 @@ namespace UI
                 MessageBox.Show("Ingrese el nombre del cliente");
                 return false;
             }
-            if (!(txtNombreCliente.Text.Length < 200))
+            if (txtNombreCliente.Text.Length > 200)
             {
                 MessageBox.Show("El campo nombre del cliente debe ser menor a 200 caracteres");
                 return false;
             }
-
             if (string.IsNullOrEmpty(txtNumero.Text) || string.IsNullOrWhiteSpace(txtNumero.Text))
             {
                 MessageBox.Show("Ingrese el número del cliente");
                 return false;
             }
-            if (!(txtNumero.Text.Length < 10))
+            if (txtNumero.Text.Length < 8 || txtNumero.Text.Length > 8)
             {
-                MessageBox.Show("El campo número debe ser menor a 10 caracteres");
+                MessageBox.Show("Ingrese un número de teléfono válido.");
                 return false;
             }
-
+            if (BLL_Clientes.ExisteNumero(txtNumero.Text,IdRegistro))
+            {
+                MessageBox.Show("El número de teléfono ya se encuentra registrado.");
+                return false;
+            }
             if (string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCorreo.Text))
             {
                 MessageBox.Show("Ingrese el correo del cliente");
@@ -87,6 +78,17 @@ namespace UI
                 MessageBox.Show("El campo correo debe ser menor a 200 caracteres");
                 return false;
             }
+            if (!General.ValidateEmail(txtCorreo.Text))
+            {
+                MessageBox.Show("Ingrese un correo válido");
+                return false;
+            }
+            if (BLL_Clientes.ExisteCorreo(txtCorreo.Text, IdRegistro))
+            {
+                MessageBox.Show("El Correo ya se encuentra registrado.");
+                return false;
+            }
+
             return true;
         }
         private void Guardar()
@@ -150,6 +152,7 @@ namespace UI
         {
             try
             {
+
                 IdRegistro = Convert.ToInt32(gridClientes.CurrentRow.Cells[0].Value);
                 txtNombreCliente.Text = gridClientes.CurrentRow.Cells[1].Value.ToString();
                 txtNumero.Text = gridClientes.CurrentRow.Cells[2].Value.ToString();
@@ -185,6 +188,10 @@ namespace UI
         private void btnAnular_Click(object sender, EventArgs e)
         {
             Anular();
+        }
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsNumber(e.KeyChar) || e.KeyChar == 8);
         }
         #endregion
 
