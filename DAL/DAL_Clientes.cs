@@ -66,7 +66,8 @@ namespace DAL
         {
             using (BDMPOO bd = new())
             {
-                return bd.Clientes.Where(a => a.Numero == Numero && a.IdCliente != IdRegistro && a.Activo == true).Count() > 0;
+                return bd.Clientes.Where(a => a.Numero == Numero 
+                && a.IdCliente != IdRegistro && a.Activo == true).Count() > 0;
             }
         }
         public static bool ExisteCorreo(string Email, int IdRegistro)

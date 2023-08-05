@@ -16,6 +16,8 @@ namespace UI
         private void AdministracionClientes_Load(object sender, EventArgs e)
         {
             cargarGrid();
+            txtMensaje.Enabled = false;
+            btnEnviar.Enabled = false;
 
         }
 
@@ -63,7 +65,7 @@ namespace UI
                 MessageBox.Show("Ingrese un número de teléfono válido.");
                 return false;
             }
-            if (BLL_Clientes.ExisteNumero(txtNumero.Text,IdRegistro))
+            if (BLL_Clientes.ExisteNumero(txtNumero.Text, IdRegistro))
             {
                 MessageBox.Show("El número de teléfono ya se encuentra registrado.");
                 return false;
@@ -169,6 +171,7 @@ namespace UI
             txtNombreCliente.Text = string.Empty;
             txtNumero.Text = string.Empty;
             txtCorreo.Text = string.Empty;
+            txtMensaje.Text = string.Empty;
         }
         #endregion
 
@@ -196,5 +199,25 @@ namespace UI
         #endregion
 
 
+        private void ckEnviarCorreo_CheckedChanged(object sender, EventArgs e)
+        {
+            btnEnviar.Enabled = txtMensaje.Enabled = ckEnviarCorreo.Checked;
+        }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMensaje.Text) || string.IsNullOrWhiteSpace(txtMensaje.Text))
+            {
+                MessageBox.Show("No estes de loco");
+                return;
+            }
+
+            if (General.EnviarCorreo("sistema@noreply.com", txtCorreo.Text, "Prueba",txtMensaje.Text))
+            {
+                MessageBox.Show("Mensaje enviado con exito");
+                return;
+            }
+            MessageBox.Show("No se envió el correo. jajajajaj");
+        }
     }
 }
